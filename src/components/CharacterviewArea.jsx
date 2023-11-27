@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const ViewContainer = styled.div`
@@ -14,10 +15,14 @@ const ViewContainer = styled.div`
 `;
 
 const CharacterviewArea = ({ results }) => {
+  let navigate = useNavigate();
+  const handleClick = (id) => {
+    navigate(`/${id}`);
+  };
   return (
     <ViewContainer>
       {results.map((data, index) => (
-        <CardContainer key={index}>
+        <CardContainer onClick={() => handleClick(data.id)} key={index}>
           <Image src={data.image} />
           <Heading>{data.name}</Heading>
           <Box>
@@ -33,6 +38,7 @@ const CharacterviewArea = ({ results }) => {
 
 const CardContainer = styled.div`
   display: flex;
+  cursor: pointer;
   flex-direction: column;
   border: 1px solid rgb(51 65 85);
   border-radius: 5px;
