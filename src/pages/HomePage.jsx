@@ -65,14 +65,17 @@ const PaginationContainer = styled.div`
 `;
 const HomePage = () => {
   let [pageNumber, updatePageNumber] = useState(1);
-  let [status, updateStatus] = useState("");
-  let [gender, updateGender] = useState("");
-  let [species, updateSpecies] = useState("");
+  let [status, setStatus] = useState("");
+  let [gender, setGender] = useState("");
+  let [species, setSpecies] = useState("");
+  let [location, setLocation] = useState("");
+  let [episode, setEpisode] = useState("");
+  let [type, setType] = useState("");
   let [fetchedData, updateFetchedData] = useState([]);
   let [search, setSearch] = useState("");
   let { info, results } = fetchedData;
 
-  let api = `https://rickandmortyapi.com/api/character/?page=${pageNumber}&name=${search}&status=${status}&gender=${gender}&species=${species}`;
+  let api = `https://rickandmortyapi.com/api/character/?page=${pageNumber}&name=${search}&status=${status}&gender=${gender}&species=${species}&location=${location}&tyoe=${type}&episode=${episode}`;
 
   useEffect(() => {
     (async function () {
@@ -87,7 +90,14 @@ const HomePage = () => {
   return (
     <HomeContainer>
       <Search setSearch={setSearch} updatePageNumber={updatePageNumber} />
-      <Filter />
+      <Filter
+        setStatus={setStatus}
+        setGender={setGender}
+        setSpecies={setSpecies}
+        setLocation={setLocation}
+        setEpisode={setEpisode}
+        setType={setType}
+      />
       {fetchedData?.results ? (
         <>
           <CharacterviewArea results={fetchedData.results} />
