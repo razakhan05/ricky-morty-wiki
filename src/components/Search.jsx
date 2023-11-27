@@ -22,6 +22,7 @@ const Input = styled.input`
 const Button = styled.button`
   background-color: rgb(239 68 68);
   border: none;
+  color: ghostwhite;
   width: 8rem;
   cursor: pointer;
   border-radius: 5px;
@@ -30,11 +31,20 @@ const Button = styled.button`
     background-color: rgb(250 80 80);
   }
 `;
-const Search = () => {
+const Search = ({ setSearch, updatePageNumber }) => {
+  let searchHandler = (e) => {
+    e.preventDefault();
+  };
   return (
     <SearchContainer>
-      <Input placeholder="search for characters" />
-      <Button>SEARCH</Button>
+      <Input
+        onChange={(e) => {
+          updatePageNumber(1);
+          setSearch(e.target.value);
+        }}
+        placeholder="search for characters"
+      />
+      <Button onClick={searchHandler}>SEARCH</Button>
     </SearchContainer>
   );
 };

@@ -19,11 +19,11 @@ const CharacterviewArea = ({ results }) => {
       {results.map((data, index) => (
         <CardContainer key={index}>
           <Image src={data.image} />
-          <Label>{data.name}</Label>
+          <Heading>{data.name}</Heading>
           <Box>
-            <Label>{data.gender}</Label>
-            <Label>{data.status}</Label>
-            <Label>{data.species}</Label>
+            <Label>Gender : {data.gender}</Label>
+            <Label>STATUS : {data.status}</Label>
+            <Label>SPECIES : {data.species}</Label>
           </Box>
         </CardContainer>
       ))}
@@ -45,14 +45,24 @@ const Image = styled.img`
   width: 100%;
   height: 100%;
   border-radius: 5px;
+  margin-bottom: 10px;
 `;
-const Label = styled.label`
+const Heading = styled.label`
   font-size: larger;
   font-weight: bold;
 `;
+const Label = styled.label`
+  font-size: medium;
+  font-weight: bold;
+  color: #f8f8ffc6;
+`;
 const Box = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
+  text-align: center;
+  margin: 1rem 0 1rem 0;
+  width: 100%;
 `;
 
 export default CharacterviewArea;

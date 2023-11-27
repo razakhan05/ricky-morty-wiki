@@ -86,7 +86,7 @@ const HomePage = () => {
   };
   return (
     <HomeContainer>
-      <Search />
+      <Search setSearch={setSearch} updatePageNumber={updatePageNumber} />
       <Filter />
       {fetchedData?.results ? (
         <>
