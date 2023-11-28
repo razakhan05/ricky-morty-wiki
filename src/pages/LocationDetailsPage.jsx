@@ -92,7 +92,9 @@ const LocationDetailsPage = () => {
           <Label>
             dimension : <span>{locationData.dimension}</span>
           </Label>
-          <Label>All characters</Label>
+          <Label>
+            All characters from <span>{locationData?.name}</span> location
+          </Label>
           <CardContainer>
             {charactersData.length > 0 && (
               <CharacterviewArea results={charactersData} />

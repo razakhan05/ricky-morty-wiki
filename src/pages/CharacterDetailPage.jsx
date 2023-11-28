@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { Label } from "../globalStyles";
 
 const DetailsContainer = styled.div`
   display: grid;
@@ -15,14 +16,6 @@ const Image = styled.img`
   width: 100%;
   object-fit: cover;
   border-radius: 5px;
-`;
-
-const Label = styled.h3`
-  text-transform: uppercase;
-  color: rgb(71 85 105);
-  span {
-    color: rgb(148 163 184);
-  }
 `;
 
 const ContentContainer = styled.div`
@@ -50,19 +43,9 @@ const CharacterDetailPage = () => {
   const { id } = useParams();
 
   const [fetchedData, updateFetchedData] = useState({});
-  const {
-    name,
-    gender,
-    image,
-    location,
-    status,
-    species,
-    type,
-    origin,
-    episode,
-  } = fetchedData;
+  const { name, gender, image, location, status, species, type, origin } =
+    fetchedData;
 
-  const [locationName, setLocationName] = useState("");
   const [data, setData] = useState({});
   const [episodeNames, setEpisodeNames] = useState([]); // State to store episode names
 
@@ -76,7 +59,6 @@ const CharacterDetailPage = () => {
         updateFetchedData(characterData);
 
         if (characterData.location) {
-          setLocationName(characterData.location.name);
           const result = await fetch(characterData.location.url);
           const locationData = await result.json();
           setData(locationData);
@@ -129,23 +111,21 @@ const CharacterDetailPage = () => {
           Location: <span>{location?.name}</span>
         </Label>
         <Label>
-          Number of Residents: <span>{residents?.length}</span>
+          Total Residents In <span>{location?.name}</span> :{" "}
+          <span>{residents?.length}</span>
         </Label>
         {dimension && (
           <Label>
             Dimension: <span>{dimension}</span>
           </Label>
         )}
-        {species && (
-          <Label>
-            Species: <span>{species}</span>
-          </Label>
-        )}
       </ContentContainer>
       {/* Display episode names */}
       {episodeNames.length > 0 && (
         <div>
-          <Label>Featured in Episodes:</Label>
+          <Label>
+            <span>{name}</span> Featured in these episodes :
+          </Label>
           <FeaturedContainer>
             <ol>
               {episodeNames.map((episodeName, index) => (

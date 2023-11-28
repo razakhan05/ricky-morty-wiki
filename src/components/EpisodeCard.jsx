@@ -1,5 +1,7 @@
+/* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { Label } from "../globalStyles";
 
 const ViewContainer = styled.div`
   display: grid;
@@ -52,14 +54,6 @@ const CardContainer = styled.div`
   border-radius: 5px;
   text-transform: uppercase;
   align-items: center;
-`;
-
-const Label = styled.h3`
-  text-transform: uppercase;
-  color: rgb(71 85 105);
-  span {
-    color: rgb(148 163 184);
-  }
 `;
 
 export default EpisodeCard;

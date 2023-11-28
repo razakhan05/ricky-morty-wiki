@@ -75,13 +75,15 @@ const EpisodeDetailsPage = () => {
             Episode : <span>{episodesData.episode}</span>
           </Label>
           <Label>
-            name : <span>{episodesData.name}</span>
+            Episode name : <span>{episodesData.name}</span>
           </Label>
           <Label>
-            Date : <span>{episodesData.air_date}</span>
+            Aired Date : <span>{episodesData.air_date}</span>
           </Label>
 
-          <Label>All characters</Label>
+          <Label>
+            All the character from <span>{episodesData?.name} episode</span>
+          </Label>
           <CardContainer>
             {charactersData.length > 0 && (
               <CharacterviewArea results={charactersData} />

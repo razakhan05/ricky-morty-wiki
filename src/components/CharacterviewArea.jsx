@@ -1,5 +1,7 @@
+/* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { Label } from "../globalStyles";
 
 const ViewContainer = styled.div`
   display: grid;
@@ -61,13 +63,7 @@ const Image = styled.img`
   border-radius: 5px;
   margin-bottom: 10px;
 `;
-const Label = styled.h3`
-  text-transform: uppercase;
-  color: rgb(71 85 105);
-  span {
-    color: rgb(148 163 184);
-  }
-`;
+
 const Box = styled.div`
   display: flex;
   flex-direction: column;
