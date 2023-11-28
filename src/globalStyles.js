@@ -137,4 +137,65 @@ export const Button = styled.button`
   }
 `;
 
+export const Label = styled.h3`
+  text-transform: uppercase;
+  color: rgb(71 85 105);
+  span {
+    color: rgb(148 163 184);
+  }
+`;
+
+export const PaginationContainer = styled.div`
+  ul {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    /* background-color: ; */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: red;
+    }
+
+    &.active {
+      background-color: red;
+      color: #fff;
+    }
+
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+
+  .prev,
+  .next {
+    background-color: rgb(71 85 105);
+    color: #fff;
+    border: none;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+`;
 export default GlobalStyle;
