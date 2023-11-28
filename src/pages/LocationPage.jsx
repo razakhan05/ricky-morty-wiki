@@ -17,7 +17,6 @@ const LocationPage = () => {
 
   const api = `https://rickandmortyapi.com/api/location/?page=${pageNumber}&name=${search}`;
 
-  console.log(fetchedData, "mansi");
   useEffect(() => {
     const fetchData = async () => {
       try {
