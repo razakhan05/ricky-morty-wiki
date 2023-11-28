@@ -60,6 +60,7 @@ const Button = styled.button`
   background-color: rgb(239 68 68);
   border: none;
   padding: 1rem;
+  margin-top: 15px;
   color: ghostwhite;
   width: 8rem;
   cursor: pointer;
