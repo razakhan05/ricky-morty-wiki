@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import styled from "styled-components";
 
@@ -68,6 +69,7 @@ const Button = styled.button`
     background-color: rgb(250 80 80);
   }
 `;
+
 const CustomFilterSelect = ({
   label,
   options,
@@ -103,64 +105,78 @@ const Filter = ({
   setEpisode,
   setType,
 }) => {
-  const [statusOpen, setStatusOpen] = useState(false);
-  const [statusOption, setStatusOption] = useState("Alive");
-  const [locationOpen, setLocationOpen] = useState(false);
-  const [locationOpt, setLocationOpt] = useState("Location 1");
-  const [episodeOpen, setEpisodeOpen] = useState(false);
-  const [episodeOpt, setEpisodeOpt] = useState("Episode 1");
-  const [genderOpen, setGenderOpen] = useState(false);
-  const [genderOpt, setGenderOpt] = useState("Male");
-  const [speciesOpen, setSpeciesOpen] = useState(false);
-  const [speciesOpt, setSpeciesOpt] = useState("Human");
-  const [typeOpen, setTypeOpen] = useState(false);
-  const [typeOpt, setTypeOpt] = useState("Parasite");
+  const [filterOptions, setFilterOptions] = useState({
+    Status: ["Dead", "Alive", "Unknown"],
+    Location: Array.from(
+      { length: 126 },
+      (_, index) => `Location ${index + 1}`
+    ),
+    Episode: Array.from({ length: 51 }, (_, index) => `Episode ${index + 1}`),
+    Gender: ["female", "male", "genderless", "unknown"],
+    Species: [
+      "Human",
+      "Alien",
+      "Humanoid",
+      "Poopybutthole",
+      "Mythological",
+      "Unknown",
+      "Animal",
+      "Disease",
+      "Robot",
+      "Cronenberg",
+      "Planet",
+    ],
+    Type: [
+      "Genetic experiment",
+      "Parasite",
+      "Human with antennae",
+      "Human with ants in his eyes",
+      "Superhuman (Ghost trains summoner)",
+    ],
+  });
 
-  const toggleStatusOpen = () => setStatusOpen(!statusOpen);
-  const toggleLocationOpen = () => setLocationOpen(!locationOpen);
-  const toggleEpisodeOpen = () => setEpisodeOpen(!episodeOpen);
-  const toggleGenderOpen = () => setGenderOpen(!genderOpen);
-  const toggleSpeciesOpen = () => setSpeciesOpen(!speciesOpen);
-  const toggleTypeOpen = () => setTypeOpen(!typeOpen);
+  const [selectedOptions, setSelectedOptions] = useState({
+    Status: "Alive",
+    Location: "Location 1",
+    Episode: "Episode 1",
+    Gender: "Male",
+    Species: "Human",
+    Type: "Parasite",
+  });
 
-  const handleStatusClick = (option) => {
-    setStatusOption(option);
-    setStatusOpen(false);
+  const [isOpen, setIsOpen] = useState({
+    Status: false,
+    Location: false,
+    Episode: false,
+    Gender: false,
+    Species: false,
+    Type: false,
+  });
+
+  const toggleFilterOpen = (filter) => {
+    setIsOpen((prevOpen) => ({
+      ...prevOpen,
+      [filter]: !isOpen[filter],
+    }));
   };
 
-  const handleLocationClick = (option) => {
-    setLocationOpt(option);
-    setLocationOpen(false);
-  };
-
-  const handleEpisodeClick = (option) => {
-    setEpisodeOpt(option);
-    setEpisodeOpen(false);
-  };
-
-  const handleGenderClick = (option) => {
-    setGenderOpt(option);
-    setGenderOpen(false);
-  };
-
-  const handleSpeciesClick = (option) => {
-    setSpeciesOpt(option);
-    setSpeciesOpen(false);
-  };
-
-  const handleTypeClick = (option) => {
-    setTypeOpt(option);
-    setTypeOpen(false);
+  const handleOptionClick = (filter, option) => {
+    setSelectedOptions((prevOptions) => ({
+      ...prevOptions,
+      [filter]: option,
+    }));
+    toggleFilterOpen(filter);
   };
 
   const handleClick = () => {
-    setStatus(statusOption);
-    setGender(genderOpt);
-    setSpecies(speciesOpt);
-    setLocation(locationOpt);
-    setEpisode(episodeOpt);
-    setType(typeOpt);
+    setStatus(selectedOptions.Status);
+    setGender(selectedOptions.Gender);
+    setSpecies(selectedOptions.Species);
+    setLocation(selectedOptions.Location);
+    setEpisode(selectedOptions.Episode);
+    setType(selectedOptions.Type);
   };
+
   const resetButtonHandler = () => {
     setStatus("");
     setGender("");
@@ -170,88 +186,20 @@ const Filter = ({
     setType("");
   };
 
-  const statusOptions = ["Dead", "Alive", "Unknown"];
-  const typeOptions = [
-    "Genetic experiment",
-    "Parasite",
-    "Human with antennae",
-    "Human with ants in his eyes",
-    "Superhuman (Ghost trains summoner)",
-  ];
-  const locationOptions = Array.from(
-    { length: 126 },
-    (_, index) => `Location ${index + 1}`
-  );
-  const episodeOptions = Array.from(
-    { length: 51 },
-    (_, index) => `Episode ${index + 1}`
-  );
-  const speciesOptions = [
-    "Human",
-    "Alien",
-    "Humanoid",
-    "Poopybutthole",
-    "Mythological",
-    "Unknown",
-    "Animal",
-    "Disease",
-    "Robot",
-    "Cronenberg",
-    "Planet",
-  ];
-  const genderOptions = ["female", "male", "genderless", "unknown"];
-
   return (
     <>
       <FilterContainer>
-        <CustomFilterSelect
-          label="Status"
-          options={statusOptions}
-          selectedOption={statusOption}
-          handleOptionClick={handleStatusClick}
-          isOpen={statusOpen}
-          setIsOpen={toggleStatusOpen}
-        />
-        <CustomFilterSelect
-          label="Location"
-          options={locationOptions}
-          selectedOption={locationOpt}
-          handleOptionClick={handleLocationClick}
-          isOpen={locationOpen}
-          setIsOpen={toggleLocationOpen}
-        />
-        <CustomFilterSelect
-          label="Episode"
-          options={episodeOptions}
-          selectedOption={episodeOpt}
-          handleOptionClick={handleEpisodeClick}
-          isOpen={episodeOpen}
-          setIsOpen={toggleEpisodeOpen}
-        />
-        <CustomFilterSelect
-          label="Gender"
-          options={genderOptions}
-          selectedOption={genderOpt}
-          handleOptionClick={handleGenderClick}
-          isOpen={genderOpen}
-          setIsOpen={toggleGenderOpen}
-        />
-        <CustomFilterSelect
-          label="Species"
-          options={speciesOptions}
-          selectedOption={speciesOpt}
-          handleOptionClick={handleSpeciesClick}
-          isOpen={speciesOpen}
-          setIsOpen={toggleSpeciesOpen}
-        />
-        <CustomFilterSelect
-          label="Type"
-          options={typeOptions}
-          selectedOption={typeOpt}
-          handleOptionClick={handleTypeClick}
-          isOpen={typeOpen}
-          setIsOpen={toggleTypeOpen}
-        />
+        {Object.keys(filterOptions).map((filter) => (
+          <CustomFilterSelect
+            key={filter}
+            label={filter}
+            options={filterOptions[filter]}
+            selectedOption={selectedOptions[filter]}
+            handleOptionClick={(option) => handleOptionClick(filter, option)}
+            isOpen={isOpen[filter]}
+            setIsOpen={() => toggleFilterOpen(filter)}
+          />
+        ))}
         <Button onClick={handleClick}>FILTER</Button>
         <Button onClick={resetButtonHandler}>RESET</Button>
       </FilterContainer>
