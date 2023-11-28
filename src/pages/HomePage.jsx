@@ -4,65 +4,13 @@ import Filter from "../components/Filter";
 import CharacterviewArea from "../components/CharacterviewArea";
 import { useCallback, useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
+import { PaginationContainer } from "../globalStyles";
 
 const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-const PaginationContainer = styled.div`
-  ul {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    list-style: none;
-    padding: 0;
-    margin: 20px 0;
-  }
-
-  li {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    /* background-color: ; */
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-
-    &:hover {
-      background-color: red;
-    }
-
-    &.active {
-      background-color: red;
-      color: #fff;
-    }
-
-    a {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      height: 100%;
-      text-decoration: none;
-      color: inherit;
-    }
-  }
-
-  .prev,
-  .next {
-    background-color: rgb(71 85 105);
-    color: #fff;
-    border: none;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-`;
 const HomePage = () => {
   let [pageNumber, updatePageNumber] = useState(1);
   let [status, setStatus] = useState("");
@@ -73,7 +21,7 @@ const HomePage = () => {
   let [type, setType] = useState("");
   let [fetchedData, updateFetchedData] = useState([]);
   let [search, setSearch] = useState("");
-  let { info, results } = fetchedData;
+  let { info } = fetchedData;
 
   let api = `https://rickandmortyapi.com/api/character/?page=${pageNumber}&name=${search}&status=${status}&gender=${gender}&species=${species}&location=${location}&tyoe=${type}&episode=${episode}`;
 
