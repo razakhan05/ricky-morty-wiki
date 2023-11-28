@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Search from "../components/Search";
 import LocationCard from "../components/LocationCard";
 import { PaginationContainer } from "../globalStyles";
+import Loader from "../components/Loader";
 
 const HomeContainer = styled.div`
   display: flex;
@@ -50,7 +51,7 @@ const LocationPage = () => {
       {fetchedData?.results ? (
         <LocationCard results={fetchedData.results} />
       ) : (
-        <p>Loading...</p>
+        <Loader />
       )}
       <PaginationContainer>
         <ReactPaginate

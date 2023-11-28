@@ -5,6 +5,7 @@ import CharacterviewArea from "../components/CharacterviewArea";
 import { useCallback, useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { PaginationContainer } from "../globalStyles";
+import Loader from "../components/Loader";
 
 const HomeContainer = styled.div`
   display: flex;
@@ -72,7 +73,7 @@ const HomePage = () => {
           <CharacterviewArea results={fetchedData.results} />
         </>
       ) : (
-        <p>Loading...</p>
+        <Loader />
       )}
       <PaginationContainer>
         <ReactPaginate

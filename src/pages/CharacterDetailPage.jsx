@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Label } from "../globalStyles";
+import Loader from "../components/Loader";
 
 const DetailsContainer = styled.div`
   display: grid;
@@ -45,12 +46,13 @@ const CharacterDetailPage = () => {
   const [fetchedData, updateFetchedData] = useState({});
   const { name, gender, image, location, status, species, type, origin } =
     fetchedData;
-
   const [data, setData] = useState({});
   const [episodeNames, setEpisodeNames] = useState([]); // State to store episode names
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
       try {
         const response = await fetch(
           `https://rickandmortyapi.com/api/character/${id}`
@@ -73,13 +75,19 @@ const CharacterDetailPage = () => {
           })
         );
         setEpisodeNames(episodesResponse);
+        setIsLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
+        setIsLoading(false);
       }
     };
 
     fetchData();
   }, [id]);
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   const { dimension, residents } = data;
 

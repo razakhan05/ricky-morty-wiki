@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import CharacterviewArea from "../components/CharacterviewArea";
+import Loader from "../components/Loader";
 
 const DetailsContainer = styled.div`
   display: flex;
@@ -35,7 +36,6 @@ const LocationDetailsPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  console.log(locationData.residents);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -62,7 +62,6 @@ const LocationDetailsPage = () => {
         }
         setIsLoading(false);
       } catch (error) {
-        console.error("Error fetching data:", error);
         setError("Failed to fetch data");
         setIsLoading(false);
       }
@@ -72,7 +71,7 @@ const LocationDetailsPage = () => {
   }, [id]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   if (error) {

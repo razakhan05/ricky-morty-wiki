@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Search from "../components/Search";
 import EpisodeCard from "../components/EpisodeCard";
 import { PaginationContainer } from "../globalStyles";
+import Loader from "../components/Loader";
 
 const HomeContainer = styled.div`
   display: flex;
@@ -40,7 +41,7 @@ const EpisodesPage = () => {
           <EpisodeCard results={fetchedData.results} />
         </>
       ) : (
-        <p>Loading...</p>
+        <Loader />
       )}
       <PaginationContainer>
         <ReactPaginate

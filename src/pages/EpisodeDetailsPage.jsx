@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import CharacterviewArea from "../components/CharacterviewArea";
+import Loader from "../components/Loader";
 
 const DetailsContainer = styled.div`
   display: flex;
@@ -64,7 +65,7 @@ const EpisodeDetailsPage = () => {
   }, [id]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   return (
