@@ -84,7 +84,11 @@ const EpisodesPage = () => {
   };
   return (
     <HomeContainer>
-      <Search setSearch={setSearch} updatePageNumber={updatePageNumber} />
+      <Search
+        setSearch={setSearch}
+        updatePageNumber={updatePageNumber}
+        placeholder={"Search for Episodes By Name"}
+      />
       {fetchedData?.results ? (
         <>
           <EpisodeCard results={fetchedData.results} />

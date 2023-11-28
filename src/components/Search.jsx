@@ -6,7 +6,7 @@ const SearchContainer = styled.div`
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin: 1rem 0 1rem 0;
+  margin: 2rem 0 1rem 0;
 `;
 const Input = styled.input`
   background-color: transparent;
@@ -19,22 +19,8 @@ const Input = styled.input`
     outline: none;
   }
 `;
-const Button = styled.button`
-  background-color: rgb(239 68 68);
-  border: none;
-  color: ghostwhite;
-  width: 8rem;
-  cursor: pointer;
-  border-radius: 5px;
-  font-weight: bold;
-  &:hover {
-    background-color: rgb(250 80 80);
-  }
-`;
-const Search = ({ setSearch, updatePageNumber }) => {
-  let searchHandler = (e) => {
-    e.preventDefault();
-  };
+
+const Search = ({ setSearch, updatePageNumber, placeholder }) => {
   return (
     <SearchContainer>
       <Input
@@ -42,9 +28,8 @@ const Search = ({ setSearch, updatePageNumber }) => {
           updatePageNumber(1);
           setSearch(e.target.value);
         }}
-        placeholder="search for characters"
+        placeholder={placeholder}
       />
-      <Button onClick={searchHandler}>SEARCH</Button>
     </SearchContainer>
   );
 };

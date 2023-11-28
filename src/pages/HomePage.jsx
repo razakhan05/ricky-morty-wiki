@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Search from "../components/Search";
 import Filter from "../components/Filter";
 import CharacterviewArea from "../components/CharacterviewArea";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 
 const HomeContainer = styled.div`
@@ -78,18 +78,39 @@ const HomePage = () => {
   let api = `https://rickandmortyapi.com/api/character/?page=${pageNumber}&name=${search}&status=${status}&gender=${gender}&species=${species}&location=${location}&tyoe=${type}&episode=${episode}`;
 
   useEffect(() => {
-    (async function () {
-      let data = await fetch(api).then((res) => res.json());
-      updateFetchedData(data);
-    })();
+    let isMounted = true;
+    const fetchData = async () => {
+      try {
+        const data = await fetch(api).then((res) => res.json());
+        if (isMounted) {
+          updateFetchedData(data);
+        }
+      } catch (error) {
+        // Handle error
+      }
+    };
+
+    fetchData();
+
+    return () => {
+      isMounted = false;
+    };
   }, [api]);
 
-  let pageChange = (data) => {
-    updatePageNumber(data.selected + 1);
-  };
+  const pageChange = useCallback(
+    (data) => {
+      updatePageNumber(data.selected + 1);
+    },
+    [updatePageNumber]
+  );
+
   return (
     <HomeContainer>
-      <Search setSearch={setSearch} updatePageNumber={updatePageNumber} />
+      <Search
+        setSearch={setSearch}
+        updatePageNumber={updatePageNumber}
+        placeholder={"Search for characters"}
+      />
       <Filter
         setStatus={setStatus}
         setGender={setGender}

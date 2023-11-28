@@ -95,7 +95,11 @@ const LocationPage = () => {
 
   return (
     <HomeContainer>
-      <Search setSearch={setSearch} updatePageNumber={updatePageNumber} />
+      <Search
+        setSearch={setSearch}
+        updatePageNumber={updatePageNumber}
+        placeholder={"Search for location by name"}
+      />
       {fetchedData?.results ? (
         <LocationCard results={fetchedData.results} />
       ) : (

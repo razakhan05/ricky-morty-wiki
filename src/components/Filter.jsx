@@ -11,11 +11,14 @@ const FilterContainer = styled.div`
   justify-content: center;
 `;
 
-const Label = styled.label``;
+const Label = styled.label`
+  font-weight: bolder;
+`;
 
 const CustomSelect = styled.div`
   position: relative;
-  width: 7rem;
+  text-align: center;
+  width: 10rem;
 `;
 
 const SelectHeader = styled.div`
@@ -74,8 +77,8 @@ const CustomFilterSelect = ({
   setIsOpen,
 }) => (
   <>
-    <Label htmlFor={label}>{label}:</Label>
     <CustomSelect>
+      <Label htmlFor={label}>{label}:</Label>
       <SelectHeader onClick={() => setIsOpen(!isOpen)}>
         {selectedOption}
       </SelectHeader>
@@ -157,6 +160,14 @@ const Filter = ({
     setLocation(locationOpt);
     setEpisode(episodeOpt);
     setType(typeOpt);
+  };
+  const resetButtonHandler = () => {
+    setStatus("");
+    setGender("");
+    setSpecies("");
+    setLocation("");
+    setEpisode("");
+    setType("");
   };
 
   const statusOptions = ["Dead", "Alive", "Unknown"];
@@ -242,6 +253,7 @@ const Filter = ({
           setIsOpen={toggleTypeOpen}
         />
         <Button onClick={handleClick}>FILTER</Button>
+        <Button onClick={resetButtonHandler}>RESET</Button>
       </FilterContainer>
     </>
   );
