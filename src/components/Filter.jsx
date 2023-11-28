@@ -23,7 +23,7 @@ const SelectHeader = styled.div`
   border-radius: 5px;
   border: 1px solid rgb(51 65 85);
   text-align: center;
-  color: ghostwhite;
+  color: rgb(148 163 184);
   cursor: pointer;
   background-color: rgb(15, 23, 42);
 `;
@@ -43,7 +43,7 @@ const OptionsContainer = styled.div`
 const Option = styled.div`
   padding: 8px 12px;
   text-align: center;
-  color: white;
+  color: rgb(148 163 184);
   cursor: pointer;
 
   &:hover {

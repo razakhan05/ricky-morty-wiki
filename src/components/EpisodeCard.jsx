@@ -14,30 +14,28 @@ const ViewContainer = styled.div`
   }
 `;
 
-const CharacterviewArea = ({ results }) => {
+const EpisodeCard = ({ results }) => {
   let navigate = useNavigate();
   const handleClick = (id) => {
-    navigate(`/${id}`);
+    navigate(`/episode/${id}`);
   };
   return (
     <ViewContainer>
       {results.map((data, index) => (
         <CardContainer onClick={() => handleClick(data.id)} key={index}>
-          <Image src={data.image} />
           <Label>
-            NAME : <span>{data.name}</span>
+            episode : <span>{data.episode}</span>
           </Label>
-          <Box>
-            <Label>
-              Gender : <span>{data.gender}</span>
-            </Label>
-            <Label>
-              STATUS : <span>{data.status}</span>
-            </Label>
-            <Label>
-              SPECIES : <span>{data.species}</span>
-            </Label>
-          </Box>
+          <Label>
+            name : <span>{data.name}</span>
+          </Label>
+          <Label>
+            Date : <span>{data.air_date}</span>
+          </Label>
+
+          <Label>
+            Total Characters : <span>{data?.characters?.length}</span>
+          </Label>
         </CardContainer>
       ))}
     </ViewContainer>
@@ -46,7 +44,9 @@ const CharacterviewArea = ({ results }) => {
 
 const CardContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
   cursor: pointer;
+  width: auto;
   flex-direction: column;
   border: 1px solid rgb(51 65 85);
   border-radius: 5px;
@@ -54,13 +54,6 @@ const CardContainer = styled.div`
   align-items: center;
 `;
 
-const Image = styled.img`
-  object-fit: cover;
-  width: 100%;
-  height: 20rem;
-  border-radius: 5px;
-  margin-bottom: 10px;
-`;
 const Label = styled.h3`
   text-transform: uppercase;
   color: rgb(71 85 105);
@@ -68,12 +61,5 @@ const Label = styled.h3`
     color: rgb(148 163 184);
   }
 `;
-const Box = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  text-align: center;
-  width: 100%;
-`;
 
-export default CharacterviewArea;
+export default EpisodeCard;

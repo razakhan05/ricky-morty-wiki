@@ -3,9 +3,9 @@ import styled from "styled-components";
 
 const HeaderContainer = styled.nav`
   display: flex;
-  justify-content: space-between;
   align-items: center;
   width: 100%;
+  justify-content: space-between;
   padding: 0.5rem 2rem 0.5rem 2rem;
 `;
 
@@ -26,7 +26,14 @@ const HeaderMenu = styled.div`
 
 const HeaderMenuItem = styled(Link)`
   text-decoration: none;
-  color: rgb(248 250 252);
+  font-weight: bolder;
+  color: rgb(148 163 184);
+  &:hover {
+    color: red;
+  }
+  @media screen and (min-width: 768px) {
+    font-size: larger;
+  }
 `;
 const Header = () => {
   return (

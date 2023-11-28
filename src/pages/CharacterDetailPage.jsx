@@ -30,7 +30,6 @@ const ContentContainer = styled.div`
   text-align: left;
   padding: 0 1rem 0 1rem;
   justify-content: center;
-  width: 100%;
   flex-direction: column;
 `;
 const FeaturedContainer = styled.div`
@@ -38,7 +37,6 @@ const FeaturedContainer = styled.div`
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  width: 100%;
   text-transform: uppercase;
   overflow-y: auto;
   height: 70vh;
@@ -146,14 +144,16 @@ const CharacterDetailPage = () => {
       </ContentContainer>
       {/* Display episode names */}
       {episodeNames.length > 0 && (
-        <FeaturedContainer>
+        <div>
           <Label>Featured in Episodes:</Label>
-          <ol>
-            {episodeNames.map((episodeName, index) => (
-              <li key={index}>{episodeName}</li>
-            ))}
-          </ol>
-        </FeaturedContainer>
+          <FeaturedContainer>
+            <ol>
+              {episodeNames.map((episodeName, index) => (
+                <li key={index}>{episodeName}</li>
+              ))}
+            </ol>
+          </FeaturedContainer>
+        </div>
       )}
 
       {/* Additional details can be added here */}

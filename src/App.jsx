@@ -6,6 +6,8 @@ import EpisodesPage from "./pages/EpisodesPage";
 import LocationPage from "./pages/LocationPage";
 import Header from "./components/Header";
 import CharacterDetailPage from "./pages/CharacterDetailPage";
+import EpisodeDetailsPage from "./pages/EpisodeDetailsPage";
+import LocationDetailsPage from "./pages/LocationDetailsPage";
 
 const HeaderContainer = styled.nav`
   display: flex;
@@ -13,7 +15,7 @@ const HeaderContainer = styled.nav`
 `;
 function App() {
   return (
-    <>
+    <div className="App">
       <HeaderContainer>
         <Header />
       </HeaderContainer>
@@ -21,9 +23,11 @@ function App() {
         <Route path="/" exact Component={HomePage} />
         <Route path="/episodes" Component={EpisodesPage} />
         <Route path="/:id" Component={CharacterDetailPage} />
+        <Route path="/episode/:id" Component={EpisodeDetailsPage} />
+        <Route path="/location/:id" Component={LocationDetailsPage} />
         <Route path="/location" Component={LocationPage} />
       </Routes>
-    </>
+    </div>
   );
 }
 

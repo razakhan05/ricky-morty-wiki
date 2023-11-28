@@ -14,30 +14,30 @@ const ViewContainer = styled.div`
   }
 `;
 
-const CharacterviewArea = ({ results }) => {
+const LocationCard = ({ results }) => {
   let navigate = useNavigate();
   const handleClick = (id) => {
-    navigate(`/${id}`);
+    navigate(`/location/${id}`);
   };
   return (
     <ViewContainer>
       {results.map((data, index) => (
         <CardContainer onClick={() => handleClick(data.id)} key={index}>
-          <Image src={data.image} />
           <Label>
-            NAME : <span>{data.name}</span>
+            Location : <span>{data.id}</span>
           </Label>
-          <Box>
-            <Label>
-              Gender : <span>{data.gender}</span>
-            </Label>
-            <Label>
-              STATUS : <span>{data.status}</span>
-            </Label>
-            <Label>
-              SPECIES : <span>{data.species}</span>
-            </Label>
-          </Box>
+          <Label>
+            name : <span>{data.name}</span>
+          </Label>
+          <Label>
+            type : <span>{data.type}</span>
+          </Label>
+          <Label>
+            dimension : <span>{data.dimension}</span>
+          </Label>
+          <Label>
+            Total Residents : <span>{data?.residents?.length}</span>
+          </Label>
         </CardContainer>
       ))}
     </ViewContainer>
@@ -50,17 +50,11 @@ const CardContainer = styled.div`
   flex-direction: column;
   border: 1px solid rgb(51 65 85);
   border-radius: 5px;
+  width: 20rem;
   text-transform: uppercase;
   align-items: center;
 `;
 
-const Image = styled.img`
-  object-fit: cover;
-  width: 100%;
-  height: 20rem;
-  border-radius: 5px;
-  margin-bottom: 10px;
-`;
 const Label = styled.h3`
   text-transform: uppercase;
   color: rgb(71 85 105);
@@ -68,12 +62,5 @@ const Label = styled.h3`
     color: rgb(148 163 184);
   }
 `;
-const Box = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  text-align: center;
-  width: 100%;
-`;
 
-export default CharacterviewArea;
+export default LocationCard;
